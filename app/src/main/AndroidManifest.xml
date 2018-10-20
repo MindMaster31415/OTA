@@ -32,6 +32,9 @@
         <activity
             android:name=".AttractionMapActivity"
             android:label="@string/title_activity_attraction_map">
+
+        </activity>
+        <activity android:name=".SelectionActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -39,9 +42,6 @@
             </intent-filter>
         </activity>
         <activity android:name=".Welcome" />
-        <activity
-            android:name=".SettingsActivity"
-            android:label="@string/title_activity_settings"></activity>
     </application>
 
 </manifest>

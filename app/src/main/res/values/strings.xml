@@ -8,6 +8,20 @@
     <!-- Example General settings -->
     <string name="pref_header_general">General</string>
 
+    <string name="pref_title_sorts">Sorting type</string>
+    <string-array name="pref_sorts">
+        <item>Holistic</item>
+        <item>Preferences-heavy</item>
+        <item>Weather-heavy</item>
+        <item>Traffic-heavy</item>
+    </string-array>
+    <string-array name="pref_sort_values">
+        <item>0</item>
+        <item>1</item>
+        <item>2</item>
+        <item>3</item>
+    </string-array>
+
     <string name="pref_title_social_recommendations">Enable social recommendations</string>
     <string name="pref_description_social_recommendations">Recommendations for people to contact
         based on your message history

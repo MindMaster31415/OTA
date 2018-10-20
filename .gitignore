@@ -1,3 +1,6 @@
+#Dont track the idea folder
+
+.idea/
 *.iml
 .gradle
 /local.properties

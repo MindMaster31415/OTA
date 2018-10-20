@@ -1,9 +1,12 @@
 package optimizedtravelassistant.hackventure.com.optimizedtravelassistant;
 
+import android.Manifest;
 import android.content.Context;
+import android.content.pm.PackageManager;
 import android.location.Location;
 import android.location.LocationManager;
 import android.os.Bundle;
+import android.support.v4.app.ActivityCompat;
 import android.support.v4.app.FragmentActivity;
 import android.widget.Toast;
 
@@ -28,9 +31,10 @@ public class AttractionMapActivity extends FragmentActivity implements OnMapRead
 
     private long UPDATE_INTERVAL = 10 * 1000;  /* 10 secs */
     private long FASTEST_INTERVAL = 2000; /* 2 sec */
-    private static final int REQUEST_FINE_LOCATION=0;
+    private static final int REQUEST_FINE_LOCATION = 0;
     private static final String NULL_LOCATION = "Location is null";
     private static final String LOCATION_TEST = "Location received";
+    public static final int MY_PERMISSIONS_REQUEST_LOCATION = 99;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -72,11 +76,37 @@ public class AttractionMapActivity extends FragmentActivity implements OnMapRead
     private double[] getGPS() {
         LocationManager lm = (LocationManager) getSystemService(Context.LOCATION_SERVICE);
         List<String> providers = lm.getProviders(true);
-
 /* Loop over the array backwards, and if you get an accurate location, then break                 out the loop*/
         Location l = null;
-
-        for (int i=providers.size()-1; i>=0; i--) {
+        if(providers.size() == 0) {
+            Toast.makeText(AttractionMapActivity.this, "No Location Service available", Toast.LENGTH_LONG).show();
+            List<String> check = lm.getAllProviders();
+            if(check.isEmpty()) {
+                Toast.makeText(AttractionMapActivity.this, "Can't find any providers at all", Toast.LENGTH_LONG).show();
+            } else {
+                ActivityCompat.requestPermissions(this,
+                        new String[]{Manifest.permission.ACCESS_FINE_LOCATION},
+                        MY_PERMISSIONS_REQUEST_LOCATION);
+                providers = lm.getAllProviders();
+            }
+        }
+        for (int i = providers.size() - 1; i >= 0; i--) {
+            if (ActivityCompat.checkSelfPermission(this,
+                    Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED
+                    && ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_COARSE_LOCATION)
+                    != PackageManager.PERMISSION_GRANTED) {
+                //    ActivityCompat#requestPermissions
+                ActivityCompat.requestPermissions(this,
+                        new String[]{Manifest.permission.ACCESS_FINE_LOCATION},
+                        MY_PERMISSIONS_REQUEST_LOCATION);
+                providers = lm.getProviders(true);
+                if(providers.size() == 0) {
+                    double[] gps = new double[2];
+                    gps[0] = 30;
+                    gps[1] = -80;
+                    return gps;
+                }
+            }
             l = lm.getLastKnownLocation(providers.get(i));
             if (l != null) break;
         }

@@ -23,6 +23,10 @@ public class Welcome extends AppCompatActivity {
             public void onClick(View v) {
                 Intent i = new Intent(Welcome.this, SelectionActivity.class);
                 startActivity(i);
+                /**
+                Intent i = new Intent(Welcome.this, SelectionActivity.class);
+                startActivity(i);
+                 */
             }
         });
     }

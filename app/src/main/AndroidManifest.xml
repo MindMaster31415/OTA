@@ -38,11 +38,6 @@
             android:name=".AttractionMapActivity"
             android:label="@string/title_activity_attraction_map" />
         <activity android:name=".SelectionActivity"></activity>
-        <activity android:name=".Welcome"> <intent-filter>
-            <action android:name="android.intent.action.MAIN" />
-
-            <category android:name="android.intent.category.LAUNCHER" />
-        </intent-filter></activity>
         <activity
             android:name=".LoginActivity"
             android:label="@string/title_activity_login">
@@ -51,6 +46,12 @@
             android:name=".MainMenuActivity"
             android:label="@string/title_activity_main_menu"
             android:theme="@style/AppTheme.NoActionBar">
+        <activity android:name=".Welcome">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
         </activity>
     </application>
 

@@ -9,10 +9,36 @@ import android.widget.AdapterView.OnItemSelectedListener;
 
 public class SelectionActivity extends AppCompatActivity {
 
+    private int thrill = 0;
+    private int active = 0;
+    private int explore = 0;
+    private int engage = 0;
+    private int vibe = 0;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_selection);
+    }
+
+    public int getThrill() {
+        return thrill;
+    }
+
+    public int getActive() {
+        return active;
+    }
+
+    public int getExplore() {
+        return explore;
+    }
+
+    public int getEngage() {
+        return engage;
+    }
+
+    public int getVibe() {
+        return vibe;
     }
 
     /**

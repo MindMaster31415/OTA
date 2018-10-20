@@ -2,6 +2,10 @@ package optimizedtravelassistant.hackventure.com.optimizedtravelassistant;
 
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.widget.Spinner;
+import android.widget.ArrayAdapter;
+import android.widget.SpinnerAdapter;
+import android.widget.AdapterView.OnItemSelectedListener;
 
 public class SelectionActivity extends AppCompatActivity {
 
@@ -10,4 +14,16 @@ public class SelectionActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_selection);
     }
+
+    /**
+    Spinner spinner = (Spinner) findViewById(R.id.realm_spinner);
+    // Create an ArrayAdapter using the string array and a default spinner layout
+    ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(this,
+            R.array.attraction_realms, android.R.layout.simple_spinner_item);
+// Specify the layout to use when the list of choices appears
+    adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+// Apply the adapter to the spinner
+    spinner.setAdapter(adapter);
+     **/
+
 }

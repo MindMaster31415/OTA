@@ -21,7 +21,7 @@ public class Welcome extends AppCompatActivity {
 
             @Override
             public void onClick(View v) {
-                Intent i = new Intent(Welcome.this, SelectionActivity.class);
+                Intent i = new Intent(Welcome.this, AttractionMapActivity.class);
                 startActivity(i);
             }
         });

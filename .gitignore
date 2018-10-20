@@ -1,3 +1,6 @@
+#Dont track the idea folder
+
+.idea/
 *.iml
 .gradle
 /local.properties
@@ -7,3 +10,4 @@
 /build
 /captures
 .externalNativeBuild
+.idea/vcs.xml

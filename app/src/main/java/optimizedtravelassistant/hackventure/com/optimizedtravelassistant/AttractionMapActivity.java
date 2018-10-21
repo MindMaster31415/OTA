@@ -25,6 +25,7 @@ import com.google.android.gms.maps.SupportMapFragment;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.MarkerOptions;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class AttractionMapActivity extends FragmentActivity implements OnMapReadyCallback {
@@ -34,6 +35,7 @@ public class AttractionMapActivity extends FragmentActivity implements OnMapRead
     private LocationManager locationManager;
     private FusedLocationProviderClient mFusedLocationClient;
     private Location mLastLocation;
+    private int[] preferences;
 
     private long UPDATE_INTERVAL = 10 * 1000;  /* 10 secs */
     private long FASTEST_INTERVAL = 2000; /* 2 sec */
@@ -50,6 +52,8 @@ public class AttractionMapActivity extends FragmentActivity implements OnMapRead
         // Obtain the SupportMapFragment and get notified when the map is ready to be used.
         SupportMapFragment mapFragment = (SupportMapFragment) getSupportFragmentManager()
                 .findFragmentById(R.id.map);
+        Bundle b = getIntent().getExtras();
+        preferences = b.getIntArray("preferences");
         mapFragment.getMapAsync(this);
         mLastLocation = new Location("GPS");
         double[] gps = getGPS();
@@ -72,6 +76,8 @@ public class AttractionMapActivity extends FragmentActivity implements OnMapRead
 
             }
         });
+
+        ArrayList<Location> attractionList = getAttractionLocations(preferences, mLastLocation);
     }
 
     public double[] getCoords() {
@@ -146,4 +152,7 @@ public class AttractionMapActivity extends FragmentActivity implements OnMapRead
         return gps;
     }
 
+    public ArrayList<Location> getAttractionLocations(int[] preferences, Location currentLoc) {
+
+    }
 }

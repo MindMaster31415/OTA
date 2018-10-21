@@ -1,6 +1,6 @@
 <resources>
     <string name="app_name">OptimizedTravelAssistant</string>
-    <string name="title_activity_attraction_map">Attractions</string>
+    <string name="title_activity_attraction_map">Optimized Travel Assistant</string>
     <!--
     <string name="title_activity_settings">Settings</string>
     -->
@@ -123,4 +123,7 @@
     <string name="title_location_permission">Location Needed</string>
     <string name="text_location_permission">Allow app to access your location</string>
     <string name="ok">OK</string>
+    <string name="selector_page_description">
+        \Welcome to your Optimized Travel Assistant, or OTA! To get started, tell us about your ideal travel experience
+        using the sliders below.\</string>
 </resources>

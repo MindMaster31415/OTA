@@ -1,16 +1,11 @@
 package optimizedtravelassistant.hackventure.com.optimizedtravelassistant;
 
 import android.content.Intent;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 import android.view.View;
-import android.widget.RadioGroup;
-import android.widget.RadioButton;
-import android.widget.Spinner;
-import android.widget.ArrayAdapter;
-import android.widget.SpinnerAdapter;
-import android.widget.AdapterView.OnItemSelectedListener;
 import android.widget.Button;
+import android.widget.RadioGroup;
 import android.widget.SeekBar;
 
 public class SelectionActivity extends AppCompatActivity {
@@ -49,30 +44,9 @@ public class SelectionActivity extends AppCompatActivity {
                 party = partyBar.getProgress();
                 int[] preferences = {thrill, active, explore, engage, party};
 
-                /**
-                RadioButton radioButton = (RadioButton) findViewById(selected);
-
-                switch((String) radioButton.getText()) {
-                    case "Preferences-heavy":
-                        sort_value = 1;
-                        break;
-                    case "Weather-heavy":
-                        sort_value = 2;
-                        break;
-                    case "Traffic-heavy":
-                        sort_value = 3;
-                        break;
-                    default:
-                        sort_value = 0;
-                }
-                 */
-
                 Intent i = new Intent(SelectionActivity.this, AttractionMapActivity.class);
+                i.putExtra("preferences", preferences);
                 startActivity(i);
-                /**
-                 Intent i = new Intent(Welcome.this, SelectionActivity.class);
-                 startActivity(i);
-                 */
             }
         });
 

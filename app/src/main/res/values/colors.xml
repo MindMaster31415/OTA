@@ -13,6 +13,7 @@
     <color name="active">#F58F47</color>
     <color name="engaged">#00AD00</color>
     <color name="explore">#9ECBFF</color>
-    <color name="vibes">#6E1C40</color>
+    <color name="vibes">#5E40A5</color>
+    <color name="begin_button">#002060</color>
 
 </resources>

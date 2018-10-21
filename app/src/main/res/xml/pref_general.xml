@@ -24,6 +24,7 @@
         -->
 
     <ListPreference
+        android:id="@+id/sort_chooser"
         android:defaultValue="0"
         android:entries="@array/pref_sorts"
         android:entryValues="@array/pref_sort_values"

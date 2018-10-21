@@ -4,6 +4,8 @@ import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.RadioGroup;
+import android.widget.RadioButton;
 import android.widget.Spinner;
 import android.widget.ArrayAdapter;
 import android.widget.SpinnerAdapter;
@@ -15,6 +17,7 @@ public class SelectionActivity extends AppCompatActivity {
 
     private Button prefButton;
     private Button settingsButton;
+    private RadioGroup radioGroup;
 
     private int thrill = 0;
     private int active = 0;
@@ -27,6 +30,7 @@ public class SelectionActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_selection);
 
+        radioGroup = (RadioGroup) findViewById(R.id.sort_chooser);
         prefButton = (Button) findViewById(R.id.pref_button);
 
         prefButton.setOnClickListener(new View.OnClickListener() {
@@ -45,6 +49,23 @@ public class SelectionActivity extends AppCompatActivity {
                 party = partyBar.getProgress();
                 int[] preferences = {thrill, active, explore, engage, party};
 
+                /**
+                RadioButton radioButton = (RadioButton) findViewById(selected);
+
+                switch((String) radioButton.getText()) {
+                    case "Preferences-heavy":
+                        sort_value = 1;
+                        break;
+                    case "Weather-heavy":
+                        sort_value = 2;
+                        break;
+                    case "Traffic-heavy":
+                        sort_value = 3;
+                        break;
+                    default:
+                        sort_value = 0;
+                }
+                 */
 
                 Intent i = new Intent(SelectionActivity.this, AttractionMapActivity.class);
                 startActivity(i);

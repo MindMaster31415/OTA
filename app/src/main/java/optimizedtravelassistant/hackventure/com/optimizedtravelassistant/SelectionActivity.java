@@ -79,11 +79,12 @@ public class SelectionActivity extends AppCompatActivity {
                 String coordinates = coords[0] + "," + coords[1];
 
                 JSONObject packet = new JSONObject();
+                int[] prefs = preferences;
 
                 try {
-                    packet.put("algorithm_num", (int) 0);
+                    packet.put("algorithm_num", 0);
                     packet.put("gps_coordinates", coordinates);
-                    packet.put("user_preference", preferences);
+                    packet.put("user_preference", prefs);
                 } catch (JSONException e) {
                     e.printStackTrace();
                 }
@@ -95,6 +96,11 @@ public class SelectionActivity extends AppCompatActivity {
                             public void onResponse(JSONObject response) {
                                 Log.i("response", response.toString());
                                 JSONObject result = response;
+                                if (response != null) {
+                                    Intent i = new Intent(SelectionActivity.this, AttractionMapActivity.class);
+                                    //i.putExtra("result_json", result);
+                                    startActivity(i);
+                                }
                             }
                         }, new Response.ErrorListener() {
 
@@ -106,9 +112,6 @@ public class SelectionActivity extends AppCompatActivity {
                         });
 
                 queue.add(jsonObjectRequest);
-                Intent i = new Intent(SelectionActivity.this, AttractionMapActivity.class);
-                //i.putExtra("result_json", result);
-                startActivity(i);
 
 
 

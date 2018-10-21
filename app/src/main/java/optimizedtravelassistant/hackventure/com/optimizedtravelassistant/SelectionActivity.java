@@ -12,6 +12,7 @@ import android.widget.SpinnerAdapter;
 import android.widget.AdapterView.OnItemSelectedListener;
 import android.widget.Button;
 import android.widget.SeekBar;
+import org.json.*;
 
 public class SelectionActivity extends AppCompatActivity {
 
@@ -66,6 +67,15 @@ public class SelectionActivity extends AppCompatActivity {
                         sort_value = 0;
                 }
                  */
+                JSONObject packet = new JSONObject();
+                try {
+                    packet.put("preferences", preferences);
+                } catch (JSONException e) {
+                    e.printStackTrace();
+
+                }
+
+
 
                 Intent i = new Intent(SelectionActivity.this, AttractionMapActivity.class);
                 startActivity(i);

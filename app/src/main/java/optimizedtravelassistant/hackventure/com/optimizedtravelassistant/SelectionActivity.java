@@ -9,11 +9,23 @@ import android.location.LocationManager;
 import android.os.Bundle;
 import android.support.v4.app.ActivityCompat;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.RadioGroup;
 import android.widget.SeekBar;
 import android.widget.Toast;
+
+import com.android.volley.Request;
+import com.android.volley.RequestQueue;
+import com.android.volley.Response;
+import com.android.volley.VolleyError;
+import com.android.volley.toolbox.JsonObjectRequest;
+import com.android.volley.toolbox.Volley;
+
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
 
 import java.util.List;
 
@@ -56,9 +68,50 @@ public class SelectionActivity extends AppCompatActivity {
                 party = partyBar.getProgress();
                 int[] preferences = {thrill, active, explore, engage, party};
 
-                Intent i = new Intent(SelectionActivity.this, AttractionMapActivity.class);
-                i.putExtra("preferences", preferences);
-                startActivity(i);
+
+                RequestQueue queue = Volley.newRequestQueue(getApplicationContext());
+                double[] coords = {33, -84};
+                String coordinates = String.valueOf(coords[0]) + ", " + String.valueOf(coords[1]);
+
+                JSONObject packet = new JSONObject();
+                int[] prefs = preferences;
+
+                JSONArray newJsonArr;
+
+                try {
+                    newJsonArr = new JSONArray(prefs);
+                    packet.put("algorithm_num",String.valueOf(0));
+                    packet.put("gps_coordinates", coordinates);
+                    packet.put("user_preference", newJsonArr);
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
+
+                JsonObjectRequest jsonObjectRequest = new JsonObjectRequest
+                        (Request.Method.POST, URL, packet, new Response.Listener<JSONObject>() {
+
+                            @Override
+                            public void onResponse(JSONObject response) {
+                                Log.i("response", response.toString());
+                                JSONObject result = response;
+                                if (response != null) {
+                                    Intent i = new Intent(SelectionActivity.this, AttractionMapActivity.class);
+                                    //i.putExtra("result_json", result);
+                                    startActivity(i);
+                                }
+                            }
+                        }, new Response.ErrorListener() {
+
+                            @Override
+                            public void onErrorResponse(VolleyError error) {
+                                // TODO: Handle error
+                                Log.i("Error", error.toString());
+                                Toast.makeText(SelectionActivity.this,
+                                        "Error received", Toast.LENGTH_LONG).show();
+                            }
+                        });
+                queue.add(jsonObjectRequest);
+
             }
         });
 

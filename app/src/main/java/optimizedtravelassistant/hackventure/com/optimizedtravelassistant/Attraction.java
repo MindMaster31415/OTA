@@ -8,19 +8,19 @@ public class Attraction {
     private int active;
     private int explore;
     private int engage;
-    private int vibe;
+    private int party;
     private double latitude;
     private double longitude;
     private String description;
 
-    public Attraction(String name, String address, int thrill, int active, int explore, int engage, int vibe, double latitude, double longitude, String description) {
+    public Attraction(String name, String address, int thrill, int active, int explore, int engage, int party, double latitude, double longitude, String description) {
         this.name = name;
         this.address = address;
         this.thrill = thrill;
         this.active = active;
         this.explore = explore;
         this.engage = engage;
-        this.vibe = vibe;
+        this.party = party;
         this.latitude = latitude;
         this.longitude = longitude;
         this.description = description;
@@ -54,8 +54,8 @@ public class Attraction {
         return engage;
     }
 
-    public int getVibe() {
-        return vibe;
+    public int getParty() {
+        return party;
     }
 
     public double getLatitude() {

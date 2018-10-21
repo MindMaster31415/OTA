@@ -76,8 +76,6 @@ public class AttractionMapActivity extends FragmentActivity implements OnMapRead
 
             }
         });
-
-        ArrayList<Location> attractionList = getAttractionLocations(preferences, mLastLocation);
     }
 
     public double[] getCoords() {
@@ -98,12 +96,31 @@ public class AttractionMapActivity extends FragmentActivity implements OnMapRead
     public void onMapReady(GoogleMap googleMap) {
         mMap = googleMap;
         // Add a marker in Sydney and move the camera
+
         LatLng myLocation = new LatLng(mLastLocation.getLatitude(), mLastLocation.getLongitude());
         mMap.addMarker(new MarkerOptions().position(myLocation).title("My Current Location"));
         mMap.moveCamera(CameraUpdateFactory.newLatLng(myLocation));
 
         mMap.moveCamera(CameraUpdateFactory.newLatLng(myLocation));
         mMap.animateCamera(CameraUpdateFactory.zoomTo(11));
+
+        ArrayList<Location> attractionLocs = dummyArray();
+
+        for(Location loc : attractionLocs) {
+            LatLng latlng = new LatLng(loc.getLatitude(), loc.getLongitude());
+            mMap.addMarker(new MarkerOptions().position(latlng));
+        }
+    }
+
+    public ArrayList<Location> dummyArray () {
+        ArrayList<Location> attractionLocs = new ArrayList<>();
+        for(double d = 33.33; d < 34.0; d+=.02) {
+            Location loc = new Location("");
+            loc.setLatitude(d);
+            loc.setLongitude(-84.5);
+            attractionLocs.add(loc);
+        }
+        return attractionLocs;
     }
 
     private double[] getGPS() {
@@ -150,9 +167,5 @@ public class AttractionMapActivity extends FragmentActivity implements OnMapRead
             gps[1] = l.getLongitude();
         }
         return gps;
-    }
-
-    public ArrayList<Location> getAttractionLocations(int[] preferences, Location currentLoc) {
-
     }
 }

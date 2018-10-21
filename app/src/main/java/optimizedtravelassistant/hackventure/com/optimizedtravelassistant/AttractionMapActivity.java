@@ -35,6 +35,7 @@ public class AttractionMapActivity extends FragmentActivity implements OnMapRead
     private static final String NULL_LOCATION = "Location is null";
     private static final String LOCATION_TEST = "Location received";
     public static final int MY_PERMISSIONS_REQUEST_LOCATION = 99;
+    public double[] coords;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -48,7 +49,11 @@ public class AttractionMapActivity extends FragmentActivity implements OnMapRead
         double[] gps = getGPS();
         mLastLocation.setLatitude(gps[0]);
         mLastLocation.setLongitude(gps[1]);
+        coords = gps;
+    }
 
+    public double[] getCoords() {
+        return coords;
     }
 
 
